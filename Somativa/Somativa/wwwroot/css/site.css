@@ -1,0 +1,70 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+    font-style: italic;
+}
+
+td{
+    border:none;
+}
+
+.table > :not(caption) > * > * {
+    border-bottom-width: 3px;
+}
+
+.adidi {
+    background-color: #3DFF74;
+    padding: 5px 20px;
+    border: 0;
+}
+
+.textocima {
+   color:#696969;
+   margin-bottom:15px;
+}
+
+.textin {
+    color: #696969;
+}
+
+.container{
+    margin-top: 25px;
+}
+
+.conted {
+    background-color: #EFEFEF;
+}
+
+.volt {
+    background-color: #B9B9B9;
+}
+
+.volt2 {
+    background-color: #656565;
+}
+
+.apag {
+    background-color: #FF3535;
+}
+.toptop {
+    padding-top: .15rem;
+    padding-bottom: .15rem;
+}

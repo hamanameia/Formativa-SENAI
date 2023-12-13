@@ -1,0 +1,39 @@
+﻿@model Somativa.Models.Compra
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="row d-flex justify-content-center my-3">
+    <div class="rounded conted py-3 col-10 col-sm-6">
+        <h4 class="text-center">Atualizar Compra</h4>
+
+        <div class="row d-flex justify-content-center m-2 m-sm-0">
+            <div class="col-md-10">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="CompraId" />
+                    <div class="form-group">
+                        <label asp-for="Nota" class="control-label textin"></label>
+                        <input asp-for="Nota" class="form-control rounded-pill border-1 my-2" />
+                        <span asp-validation-for="Nota" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DataHora" class="control-label textin"></label>
+                        <input asp-for="DataHora" class="form-control rounded-pill border-1 my-2" />
+                        <span asp-validation-for="DataHora" class="text-danger"></span>
+                    </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <button type="submit" value="Save" class="adidi rounded-pill me-2 my-2">Salvar</button>
+                        <a asp-action="Index" class="btn volt rounded-pill my-2">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

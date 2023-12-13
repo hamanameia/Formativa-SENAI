@@ -1,0 +1,49 @@
+﻿@model Somativa.Models.CompraItem
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="row d-flex justify-content-center my-3">
+    <div class="rounded conted py-3 col-10 col-sm-6">
+        <h4 class="text-center">Atualizar Item da Compra</h4>
+
+        <div class="row d-flex justify-content-center m-2 m-sm-0">
+            <div class="col-md-10">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="CompraItemId" />
+                    <div class="form-group">
+                        <label asp-for="CompraId" class="control-label textin"></label>
+                        <select asp-for="CompraId" class="form-control rounded-pill border-1 my-2" asp-items="ViewBag.CompraId"></select>
+                        <span asp-validation-for="CompraId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProdutoId" class="control-label textin"></label>
+                        <select asp-for="ProdutoId" class="form-control rounded-pill border-1 my-2" asp-items="ViewBag.ProdutoId"></select>
+                        <span asp-validation-for="ProdutoId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Quantidade" class="control-label textin"></label>
+                        <input asp-for="Quantidade" class="form-control rounded-pill border-1 my-2" />
+                        <span asp-validation-for="Quantidade" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Unitario" class="control-label textin"></label>
+                        <input asp-for="Unitario" type="number" class="form-control rounded-pill border-1 my-2" />
+                        <span asp-validation-for="Unitario" class="text-danger"></span>
+                    </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <button type="submit" value="Save" class="adidi rounded-pill me-2 my-2">Salvar</button>
+                        <a asp-action="Index" asp-route-id="@ViewBag.CompraId" class="btn volt rounded-pill my-2">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

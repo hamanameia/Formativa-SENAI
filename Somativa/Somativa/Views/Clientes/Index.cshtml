@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Somativa.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<h1 class="textocima">Clientes</h1>
+
+<p>
+    <a asp-action="Create" class="btn adidi rounded-pill">Adicionar</a>
+</p>
+
+<table class="table">
+    <thead class="py-5">
+        <tr>
+            <th class="border-bottom-0 d-none d-sm-table-cell"></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th class="d-none d-sm-table-cell">
+                @Html.DisplayNameFor(model => model.Endereco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefone)
+            </th>
+            <th class="d-none d-sm-table-cell">
+                @Html.DisplayNameFor(model => model.Cpf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th class="d-none d-sm-table-cell">
+                @Html.DisplayNameFor(model => model.Nascimento)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="border-0 d-none d-sm-table-cell">
+                    <a asp-action="Edit" asp-route-id="@item.ClienteId" class="text-decoration-none">
+                        <svg bootstrap-icon="PencilSquare" width="24" height="24" class="text-dark me-2 my-2"></svg>
+                    </a>
+                    <a data-bs-toggle="modal" data-bs-target="#ModalTrash-@item.ClienteId">
+                        <svg bootstrap-icon="Trash" width="24" height="24" class="text-dark me-2 my-2"></svg>
+                    </a>
+
+                </td>
+                <td>
+                    <div class="my-2">@Html.DisplayFor(modelItem => item.Nome)</div>
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    <div class="my-2">@Html.DisplayFor(modelItem => item.Endereco)</div>
+                </td>
+                <td>
+                    <div class="my-2">@Html.DisplayFor(modelItem => item.Telefone)</div>
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    <div class="my-2">@Html.DisplayFor(modelItem => item.Cpf)</div>
+                </td>
+                <td>
+                    <div class="my-2">@Html.DisplayFor(modelItem => item.Email)</div>
+                </td>
+                <td class="d-none d-sm-table-cell">
+                    <div class="my-2">@Html.DisplayFor(modelItem => item.Nascimento)</div>
+                </td>
+            </tr>
+            <tr class="d-sm-none w-100 d-flex">
+                <td class="col-4 w-100 justify-content-center">
+                    <a asp-action="Edit" asp-route-id="@item.ClienteId">
+                        <svg bootstrap-icon="PencilSquare" width="24" height="24" class="text-dark me-2 my-2"></svg>
+                    </a>
+                </td>
+                <td class="col-4 w-100">
+                    <a data-bs-toggle="modal" data-bs-target="#ModalPlus-@item.ClienteId">
+                        <svg bootstrap-icon="Plus" width="24" height="24" class="text-dark me-2 my-2"></svg>
+                    </a>
+                </td>
+                <td class="col-4 pe-0">
+                    <a data-bs-toggle="modal" data-bs-target="#ModalTrash-@item.ClienteId">
+                        <svg bootstrap-icon="Trash" width="24" height="24" class="text-dark me-2 my-2"></svg>
+                    </a>
+                </td>
+            </tr>
+            <div class="modal fade" id="ModalTrash-@item.ClienteId" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header justify-content-center border-0">
+                            <h5 class="modal-title text-center volt px-5 py-1 fs">Apagar</h5>
+                        </div>
+                        <div class="modal-body text-center border-0">
+                            <p class="text-dark fs-3 fst-normal">Tem certeza que deseja apagar os dados do @Html.DisplayFor(modelItem => item.Nome)?</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center border-0">
+                            <form asp-action="Delete" asp-route-id="@item.ClienteId" class="me-5">
+                                <input type="hidden" asp-for="@item.ClienteId" />
+                                <button type="submit" class="btn apag text-white">Deletar</button>
+                            </form>
+                            <button data-bs-dismiss="modal" class="btn volt2 text-white">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="ModalPlus-@item.ClienteId" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header justify-content-center border-0">
+                            <h5 class="modal-title text-center volt px-5 py-1 fs">Detalhes</h5>
+                        </div>
+                        <div class="modal-body text-center border-0">
+                            <p class="fw-bold">Nome:</p>
+                            <div class="my-2">@Html.DisplayFor(modelItem => item.Nome)</div>
+                            <p class="fw-bold">Endereço:</p>
+                            <div class="my-2">@Html.DisplayFor(modelItem => item.Endereco)</div>
+                            <p class="fw-bold">Telefone:</p>
+                            <div class="my-2">@Html.DisplayFor(modelItem => item.Telefone)</div>
+                            <p class="fw-bold">CPF:</p>
+                            <div class="my-2">@Html.DisplayFor(modelItem => item.Cpf)</div>
+                            <p class="fw-bold">E-mail:</p>
+                            <div class="my-2">@Html.DisplayFor(modelItem => item.Email)</div>
+                            <p class="fw-bold">Data de Nascimento:</p>
+                            <div class="my-2">@Html.DisplayFor(modelItem => item.Nascimento)</div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center border-0">
+                            <button data-bs-dismiss="modal" class="btn volt2 text-white">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </tbody>
+</table>

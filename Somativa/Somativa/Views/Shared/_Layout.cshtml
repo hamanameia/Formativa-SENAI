@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Somativa</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Somativa.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="verdinho border-bottom box-shadow mb-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <a class="ms-5" asp-area="" asp-controller="Home" asp-action="Index"><img class="w-100" style="max-width:150px;height:60px;" src="~/img/thumbnail_captura_de_tela_2023-12-04_224618-removebg-preview.png" /></a>
+                <div>
+                    <button class="btn btn-light p-2 align-self-center me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-expanded="false">
+                        <svg bootstrap-icon="List" width="24" height="24" aria-label="Like" class="text-dark"></svg> Menu
+                    </button>
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvas">
+                        <div class="offcanvas-header">
+                            <h1 class="textocima">Menu</h1>
+                        </div>
+                        <hr class="mt-1" />
+                        <div class="offcanvas-body">
+                            <ul>
+                                <li>
+                                    <a class="text-dark dropdown-item-text" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li>
+                                    <a class="text-dark dropdown-item-text" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                                </li>
+                                <li>
+                                    <a class="text-dark dropdown-item-text" asp-area="" asp-controller="Fornecedores" asp-action="Index">Fornecedores</a>
+                                </li>
+                                <li>
+                                    <a class="text-dark dropdown-item-text" asp-area="" asp-controller="Categorias" asp-action="Index">Categorias</a>
+                                </li>
+                                <li>
+                                    <a class="text-dark dropdown-item-text" asp-area="" asp-controller="Produtos" asp-action="Index">Produtos</a>
+                                </li>
+                                <li>
+                                    <a class="text-dark dropdown-item-text" asp-area="" asp-controller="Vendas" asp-action="Index">Vendas</a>
+                                </li>
+                                <li>
+                                    <a class="text-dark dropdown-item-text" asp-area="" asp-controller="Compras" asp-action="Index">Compras</a>
+                                </li>
+                                <li>
+                                    <a class="text-dark dropdown-item-text" asp-area="" asp-controller="Relatorio" asp-action="RelatProd">Relatório de produtos</a>
+                                </li>
+                                <li>
+                                    <a class="text-dark dropdown-item-text" asp-area="" asp-controller="Relatorio" asp-action="RelatMov">Relatório de movimentações</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+
+    @if (@ViewData["Title"] == "Access denied")
+    {
+        <div>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    }
+
+    <footer class="border-top fixed-bottom text-muted verdinho">
+        <a class="ms-5" asp-action="Index" asp-controller="Home">
+            <img style="width:100px; height:40px;" src="~/img/thumbnail_captura_de_tela_2023-12-04_224618-removebg-preview.png" />
+        </a>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Somativa.Models.VendaItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="textocima">Itens da Venda</h1>
+
+<p>
+    <a asp-action="Create" asp-route-id="@ViewBag.VendaId" class="btn adidi rounded-pill me-3">Adicionar</a>
+    <a asp-action="Index" asp-controller="Vendas" class="volt rounded-circle pt-1 pb-2 px-2">
+        <svg bootstrap-icon="ArrowLeft" width="24" height="24" class="text-dark"></svg>
+    </a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr class="d-flex"> 
+            <th class="border-0 d-none d-sm-table-cell col-2"></th>
+            <th class="col-3">
+                @Html.DisplayNameFor(model => model.Venda)
+            </th>
+            <th class="col-3">
+                @Html.DisplayNameFor(model => model.Produto)
+            </th>
+            <th class="col-3 col-sm-2">
+                @Html.DisplayNameFor(model => model.Quantidade)
+            </th>
+            <th class="col-3 col-sm-2">
+                @Html.DisplayNameFor(model => model.Unitario)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="d-flex">
+                <td class="d-none d-sm-table-cell col-2">
+                    <a asp-action="Edit" asp-route-id="@item.VendaItemId" class="text-decoration-none">
+                        <svg bootstrap-icon="PencilSquare" width="24" height="24" class="text-dark me-2 my-2"></svg>
+                    </a>
+                    <a data-bs-toggle="modal" data-bs-target="#ModalTrash-@item.VendaItemId">
+                        <svg bootstrap-icon="Trash" width="24" height="24" class="text-dark me-2 my-2"></svg>
+                    </a>
+                </td>
+                <td class ="col-3">
+                    @Html.DisplayFor(modelItem => item.Venda.Nota)
+                </td>
+                <td class="col-3">
+                    @Html.DisplayFor(modelItem => item.Produto.Nome)
+                </td>
+                <td class="col-3 col-sm-2">
+                    @Html.DisplayFor(modelItem => item.Quantidade)
+                </td>
+                <td class="col-3 col-sm-2">
+                    @Html.DisplayFor(modelItem => item.Unitario)
+                </td>
+            </tr>
+            <tr class="d-sm-none w-100 d-flex ">
+                <td class="col-6 d-flex justify-content-center">
+                    <a asp-action="Edit" asp-route-id="@item.VendaItemId">
+                        <svg bootstrap-icon="PencilSquare" width="24" height="24" class="text-dark me-2 my-2"></svg>
+                    </a>
+                </td>
+                <td class="col-6 pe-0 d-flex justify-content-center ">
+                    <a data-bs-toggle="modal" data-bs-target="#ModalTrash-@item.VendaItemId">
+                        <svg bootstrap-icon="Trash" width="24" height="24" class="text-dark me-2 my-2"></svg>
+                    </a>
+                </td>
+            </tr>
+            <div class="modal fade" id="ModalTrash-@item.VendaItemId" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header justify-content-center border-0">
+                            <h5 class="modal-title text-center volt px-5 py-1 fs">Apagar</h5>
+                        </div>
+                        <div class="modal-body text-center border-0">
+                            <p class="text-dark fs-3 fst-normal">Tem certeza que deseja apagar dados da @Html.DisplayFor(modelItem => item.Venda.Nota)?</p>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center border-0">
+                            <form asp-action="Delete" asp-route-id="@item.VendaItemId" class="me-5">
+                                <input type="hidden" asp-for="@item.VendaItemId" />
+                                <button type="submit" class="btn apag text-white">Deletar</button>
+                            </form>
+                            <button data-bs-dismiss="modal" class="btn volt2 text-white">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </tbody>
+</table>
